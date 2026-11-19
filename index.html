@@ -393,7 +393,7 @@ function photoHTML(p,cls){
   if(hasPhoto(p))return '<img src="'+esc(p.img)+'" alt="'+esc(p.name)+'" loading="lazy" decoding="async" onerror="this.parentNode.innerHTML=window.__nophoto">';
   return window.__nophoto;
 }
-window.__nophoto='<div class="nophoto"><div><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>Photo coming soon<br><span style="font-weight:500">Ask us for pictures</span></div></div>';
+window.__nophoto='';
 function chips(){
   var cnt={};P.forEach(function(p){cnt[p.category]=(cnt[p.category]||0)+1});
   var cats=ORDER.filter(function(c){return cnt[c]}).concat(Object.keys(cnt).filter(function(c){return ORDER.indexOf(c)<0}));
@@ -423,7 +423,7 @@ function render(){
     var b=badge(p), out=stockOf(p)<=0;
     return '<article class="card"><button class="ph" data-v="'+p.sku+'" aria-label="View '+esc(p.name)+' larger">'+
       '<span class="pill">'+esc(p.category)+'</span><span class="stock '+b[0]+'">'+b[1]+'</span>'+photoHTML(p)+
-      (hasPhoto(p)?'<span class="qv">🔍 Click to enlarge</span>':'')+'</button>'+
+      '<span class="qv">🔍 Click to enlarge</span>'+'</button>'+
       '<div class="body"><span class="sku">'+p.sku+'</span><h3 class="title">'+esc(p.name)+'</h3>'+
       (p.specs?'<span class="specs">'+esc(p.specs)+'</span>':'')+
       '<div class="foot"><div class="price">'+money(p.price)+' <small>CAD</small></div>'+
